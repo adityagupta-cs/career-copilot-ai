@@ -1,27 +1,85 @@
-import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 function FeatureCard({ icon, title, description }) {
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-blue-500 hover:-translate-y-2 transition duration-300">
+    <motion.div
+      initial={{
+        opacity: 0,
+        y: 40,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      transition={{
+        duration: 0.6,
+      }}
+      viewport={{ once: true }}
+      whileHover={{
+        y: -10,
+        scale: 1.03,
+      }}
+      className="
+        group
+        relative
+        overflow-hidden
+        rounded-3xl
+        border
+        border-white/10
+        bg-white/5
+        backdrop-blur-xl
+        p-8
+        transition-all
+        duration-500
+        hover:border-blue-500/50
+        hover:shadow-[0_0_40px_rgba(59,130,246,0.25)]
+      "
+    >
+      {/* Glow Effect */}
+      <div
+        className="
+          absolute
+          -top-20
+          -right-20
+          h-40
+          w-40
+          rounded-full
+          bg-blue-500/10
+          blur-3xl
+          transition-all
+          duration-500
+          group-hover:bg-blue-500/20
+        "
+      />
 
-      <div className="text-blue-500 mb-5">
+      {/* Icon */}
+      <div
+        className="
+          mb-6
+          inline-flex
+          rounded-2xl
+          bg-blue-500/10
+          p-4
+          text-blue-400
+          transition-transform
+          duration-300
+          group-hover:scale-110
+          group-hover:rotate-6
+        "
+      >
         {icon}
       </div>
 
-      <h3 className="text-2xl font-bold mb-4">
+      {/* Title */}
+      <h3 className="text-2xl font-bold text-white mb-4">
         {title}
       </h3>
 
+      {/* Description */}
       <p className="text-gray-400 leading-7">
         {description}
       </p>
-
-      <button className="flex items-center gap-2 text-blue-500 mt-6">
-        Learn More
-        <ArrowRight size={18} />
-      </button>
-
-    </div>
+    </motion.div>
   );
 }
 

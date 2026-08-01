@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 const stats = [
   {
     number: "5+",
@@ -19,37 +21,92 @@ const stats = [
 
 function Stats() {
   return (
-    <section className="max-w-7xl mx-auto py-20 px-8">
+    <section className="max-w-7xl mx-auto py-24 px-8">
+
       {/* Heading */}
-      <div className="text-center mb-14">
-        <h2 className="text-4xl font-bold text-white">
-          Everything You Need to Accelerate Your Career
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="text-center mb-16"
+      >
+        <h2 className="text-4xl md:text-5xl font-bold">
+          Why Choose CareerCopilot AI?
         </h2>
 
-        <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
-          CareerCopilot AI combines powerful AI tools and career resources into
-          one platform to help students prepare for interviews, improve resumes,
-          and track their learning journey.
+        <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
+          Powerful AI tools designed to help students prepare smarter,
+          learn faster, and build successful careers.
         </p>
-      </div>
+      </motion.div>
 
-      {/* Stats Grid */}
+      {/* Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
         {stats.map((item, index) => (
-          <div
+
+          <motion.div
             key={index}
-            className="bg-slate-900 border border-slate-800 rounded-2xl p-8 text-center hover:-translate-y-2 hover:border-blue-500 transition-all duration-300 shadow-lg"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.6,
+              delay: index * 0.2,
+            }}
+            viewport={{ once: true }}
+            whileHover={{
+              y: -10,
+              scale: 1.05,
+            }}
+            className="
+              group
+              relative
+              overflow-hidden
+              rounded-3xl
+              border
+              border-white/10
+              bg-white/5
+              backdrop-blur-xl
+              p-8
+              text-center
+              transition-all
+              duration-500
+              hover:border-blue-500/50
+              hover:shadow-[0_0_40px_rgba(59,130,246,0.3)]
+            "
           >
-            <h2 className="text-5xl font-bold text-blue-500">
+            {/* Glow */}
+            <div
+              className="
+                absolute
+                -top-20
+                -right-20
+                h-40
+                w-40
+                rounded-full
+                bg-blue-500/10
+                blur-3xl
+                transition-all
+                duration-500
+                group-hover:bg-blue-500/20
+              "
+            />
+
+            <h2 className="text-5xl font-bold text-blue-400">
               {item.number}
             </h2>
 
-            <p className="text-gray-400 mt-4 text-lg">
+            <p className="text-gray-300 mt-5 text-lg">
               {item.title}
             </p>
-          </div>
+
+          </motion.div>
+
         ))}
+
       </div>
+
     </section>
   );
 }
